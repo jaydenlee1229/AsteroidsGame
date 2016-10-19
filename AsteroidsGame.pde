@@ -1,15 +1,59 @@
-//your variable declarations here
+SpaceShip nova = new SpaceShip();
 public void setup() 
 {
-  //your code here
+  size(500, 500);
+  background(0);
 }
 public void draw() 
 {
-  //your code here
+  nova.show();
 }
 class SpaceShip extends Floater  
 {   
-    //your code here
+  public void setX(int x){myCenterX = x;}
+  public int getX(){return (int)myCenterX;}
+  public void setY(int y){myCenterY = y;}
+  public int getY(){return (int)myCenterY;}
+  public void setDirectionX(double x){myDirectionX = x;}
+  public double getDirectionX(){return myDirectionX;}   
+  public void setDirectionY(double y){myDirectionY = y;}
+  public double getDirectionY(){return myDirectionY;}   
+  public void setPointDirection(int degrees){myPointDirection = degrees;}   
+  public double getPointDirection(){return myPointDirection;} 
+  SpaceShip()
+  {
+    corners = 14;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    xCorners[0] = 8;
+    yCorners[0] = 6;
+    xCorners[1] = 14;
+    yCorners[1] = 0;
+    xCorners[2] = 8;
+    yCorners[2] = -6;
+    xCorners[3] = -4;
+    yCorners[3] = -6;
+    xCorners[4] = -4;
+    yCorners[4] = -14;
+    xCorners[5] = 3;
+    yCorners[5] = -17;
+    xCorners[6] = -7;
+    yCorners[6] = -17;
+    xCorners[7] = -7;
+    yCorners[7] = -14;
+    xCorners[8] = -14;
+    yCorners[8] = 0;
+    xCorners[9] = -7;
+    yCorners[9] = 14;
+    xCorners[10] = -7;
+    yCorners[10] = 17;
+    xCorners[11] = 3;
+    yCorners[11] = 17;
+    xCorners[12] = -4;
+    yCorners[12] = 14;
+    xCorners[13] = -4;
+    yCorners[13] = 6;
+  }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
@@ -52,15 +96,15 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     myCenterY += myDirectionY;     
 
     //wrap around screen    
-    if(myCenterX >width)
+    if(myCenterX > width)
     {     
       myCenterX = 0;    
     }    
-    else if (myCenterX<0)
+    else if (myCenterX < 0)
     {     
       myCenterX = width;    
     }    
-    if(myCenterY >height)
+    if(myCenterY > height)
     {    
       myCenterY = 0;    
     }   
