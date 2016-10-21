@@ -2,11 +2,34 @@ SpaceShip nova = new SpaceShip();
 public void setup() 
 {
   size(500, 500);
-  background(0);
 }
 public void draw() 
 {
+  background(0);
   nova.show();
+  nova.move();
+  noStroke();
+  fill(0, 0, 0, 10);
+  rect(0, 0, 500, 500);
+}
+public void keyPressed()
+{
+  if(keyCode == 40)
+  {
+    nova.accelerate(-.2);
+  }
+  if(keyPressed && keyCode == 38)
+  {
+    nova.accelerate(.2);
+  }
+  if(keyPressed && keyCode == 37)
+  {
+    nova.rotate(-10);
+  }
+  if(keyPressed && keyCode == 39)
+  {
+    nova.rotate(10);
+  }
 }
 class SpaceShip extends Floater  
 {   
@@ -53,6 +76,12 @@ class SpaceShip extends Floater
     yCorners[12] = 14;
     xCorners[13] = -4;
     yCorners[13] = 6;
+    myColor = 255;
+    myCenterX = 250;
+    myCenterY = 250;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
@@ -131,4 +160,3 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
