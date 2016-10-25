@@ -2,6 +2,12 @@ SpaceShip nova = new SpaceShip();
 public void setup() 
 {
   size(500, 500);
+  Star space = new Star [100];
+  for(int i = 0; i < space.length; i++)
+  {
+    space[i] = new Star();
+    space[i].show();
+  }
 }
 public void draw() 
 {
@@ -18,17 +24,40 @@ public void keyPressed()
   {
     nova.accelerate(-.2);
   }
-  if(keyPressed && keyCode == 38)
+  if(keyCode == 38)
   {
     nova.accelerate(.2);
   }
-  if(keyPressed && keyCode == 37)
+  if(keyCode == 37)
   {
     nova.rotate(-10);
   }
-  if(keyPressed && keyCode == 39)
+  if(keyCode == 39)
   {
     nova.rotate(10);
+  }
+  if(keyCode == 32)
+  {
+    nova.setX((int)(Math.random()*500));
+    nova.setY((int)(Math.random()*500));
+    nova.setPointDirection((int)(Math.random()*360));
+  }
+}
+class Star
+{
+  public void setX(int x){myX = x;}
+  public int getX(){return myX;}
+  public void setY(int y){myY = y;}
+  public int getY(){return myY;}
+  Star()
+  {
+    myX = (int)(Math.random()*500);
+    myY = (int)(Math.random()*500);
+  }
+  public void show()
+  {
+    fill(255);
+    ellipse(getX(), getY(), 3, 3);
   }
 }
 class SpaceShip extends Floater  
@@ -76,7 +105,7 @@ class SpaceShip extends Floater
     yCorners[12] = 14;
     xCorners[13] = -4;
     yCorners[13] = 6;
-    myColor = 255;
+    myColor = (255);
     myCenterX = 250;
     myCenterY = 250;
     myDirectionX = 0;
