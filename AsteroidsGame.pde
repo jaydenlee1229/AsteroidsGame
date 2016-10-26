@@ -1,8 +1,8 @@
+Star [] space = new Star [100];
 SpaceShip nova = new SpaceShip();
 public void setup() 
 {
   size(500, 500);
-  Star space = new Star [100];
   for(int i = 0; i < space.length; i++)
   {
     space[i] = new Star();
@@ -11,12 +11,15 @@ public void setup()
 }
 public void draw() 
 {
-  background(0);
+  noStroke();
+  fill(0, 0, 0, 50);
+  rect(0, 0, 500, 500);
+  for(int i = 0; i < space.length; i++)
+  {
+    space[i].show();
+  }
   nova.show();
   nova.move();
-  noStroke();
-  fill(0, 0, 0, 10);
-  rect(0, 0, 500, 500);
 }
 public void keyPressed()
 {
@@ -27,6 +30,7 @@ public void keyPressed()
   if(keyCode == 38)
   {
     nova.accelerate(.2);
+    //rect((float)(nova.getX() + nova.getDirectionX()), (float)(nova.getY() + nova.getDirectionY()), 25, 5);
   }
   if(keyCode == 37)
   {
@@ -36,15 +40,18 @@ public void keyPressed()
   {
     nova.rotate(10);
   }
-  if(keyCode == 32)
+  if(keyCode == 16)
   {
     nova.setX((int)(Math.random()*500));
     nova.setY((int)(Math.random()*500));
+    nova.setDirectionX(0);
+    nova.setDirectionY(0);
     nova.setPointDirection((int)(Math.random()*360));
   }
 }
 class Star
 {
+  int myX, myY;
   public void setX(int x){myX = x;}
   public int getX(){return myX;}
   public void setY(int y){myY = y;}
