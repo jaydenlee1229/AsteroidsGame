@@ -144,7 +144,6 @@ class Asteroid extends Floater
   public double getPointDirection(){return myPointDirection;} 
   public Asteroid()
   {
-    rotateSpeed = (int)(Math.random() * 100 - 50);
     corners = 8;
     xCorners = new int[corners];
     yCorners = new int[corners];
@@ -170,6 +169,29 @@ class Asteroid extends Floater
     myDirectionX = (int)(Math.random()*500);
     myDirectionY = (int)(Math.random()*500);
     myPointDirection = (int)(Math.random() * Math.PI / 180);
+  }
+  public void move ()
+  {
+    rotateSpeed = (int)(Math.random() * 100 - 50);
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;     
+
+    if(myCenterX > width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX < 0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY > height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
