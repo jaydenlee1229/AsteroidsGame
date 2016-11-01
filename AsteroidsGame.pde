@@ -1,9 +1,9 @@
 Star [] space = new Star [100];
-Asteroid [] rocks = new Asteroid[10];
+Asteroid [] rocks = new Asteroid[7];
 SpaceShip nova = new SpaceShip();
 public void setup() 
 {
-  size(500, 500);
+  size(1000, 1000);
   for(int i = 0; i < space.length; i++)
   {
     space[i] = new Star();
@@ -18,7 +18,7 @@ public void draw()
 {
   noStroke();
   fill(0, 0, 0, 50);
-  rect(0, 0, 500, 500);
+  rect(0, 0, 1000, 1000);
   for(int i = 0; i < space.length; i++)
   {
     space[i].show();
@@ -35,11 +35,11 @@ public void keyPressed()
 {
   if(keyCode == 40)
   {
-    nova.accelerate(-.2);
+    nova.accelerate(-.1);
   }
   if(keyCode == 38)
   {
-    nova.accelerate(.2);
+    nova.accelerate(.1);
   }
   if(keyCode == 37)
   {
@@ -51,8 +51,8 @@ public void keyPressed()
   }
   if(keyCode == 16)
   {
-    nova.setX((int)(Math.random()*500));
-    nova.setY((int)(Math.random()*500));
+    nova.setX((int)(Math.random()*1000));
+    nova.setY((int)(Math.random()*1000));
     nova.setDirectionX(0);
     nova.setDirectionY(0);
     nova.setPointDirection((int)(Math.random()*360));
@@ -67,8 +67,8 @@ class Star
   public int getY(){return myY;}
   public Star()
   {
-    myX = (int)(Math.random()*500);
-    myY = (int)(Math.random()*500);
+    myX = (int)(Math.random()*1000);
+    myY = (int)(Math.random()*1000);
   }
   public void show()
   {
@@ -93,34 +93,34 @@ class SpaceShip extends Floater
     corners = 14;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 8;
-    yCorners[0] = 6;
-    xCorners[1] = 14;
-    yCorners[1] = 0;
-    xCorners[2] = 8;
-    yCorners[2] = -6;
-    xCorners[3] = -4;
-    yCorners[3] = -6;
-    xCorners[4] = -4;
-    yCorners[4] = -14;
-    xCorners[5] = 3;
-    yCorners[5] = -17;
-    xCorners[6] = -7;
-    yCorners[6] = -17;
-    xCorners[7] = -7;
-    yCorners[7] = -14;
-    xCorners[8] = -14;
-    yCorners[8] = 0;
-    xCorners[9] = -7;
-    yCorners[9] = 14;
-    xCorners[10] = -7;
-    yCorners[10] = 17;
-    xCorners[11] = 3;
-    yCorners[11] = 17;
-    xCorners[12] = -4;
-    yCorners[12] = 14;
-    xCorners[13] = -4;
-    yCorners[13] = 6;
+    xCorners[0] = 10;
+    yCorners[0] = 8;
+    xCorners[1] = 16;
+    yCorners[1] = 2;
+    xCorners[2] = 10;
+    yCorners[2] = -8;
+    xCorners[3] = -6;
+    yCorners[3] = -8;
+    xCorners[4] = -6;
+    yCorners[4] = -16;
+    xCorners[5] = 5;
+    yCorners[5] = -19;
+    xCorners[6] = -9;
+    yCorners[6] = -19;
+    xCorners[7] = -9;
+    yCorners[7] = -16;
+    xCorners[8] = -16;
+    yCorners[8] = 2;
+    xCorners[9] = -9;
+    yCorners[9] = 16;
+    xCorners[10] = -9;
+    yCorners[10] = 19;
+    xCorners[11] = 5;
+    yCorners[11] = 19;
+    xCorners[12] = -6;
+    yCorners[12] = 16;
+    xCorners[13] = -6;
+    yCorners[13] = 8;
     myColor = (255);
     myCenterX = 250;
     myCenterY = 250;
@@ -144,54 +144,37 @@ class Asteroid extends Floater
   public double getPointDirection(){return myPointDirection;} 
   public Asteroid()
   {
+    rotateSpeed = (int)(Math.random() * 8 - 4);
     corners = 8;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -5;
-    yCorners[0] = -5;
-    xCorners[1] = -6;
-    yCorners[1] = 0;
-    xCorners[2] = 0;
-    yCorners[2] = 2;
-    xCorners[3] = 1;
-    yCorners[3] = 3;
-    xCorners[4] = 2;
-    yCorners[4] = 3;
-    xCorners[5] = 3;
-    yCorners[5] = -1;
-    xCorners[6] = 4;
-    yCorners[6] = -3;
-    xCorners[7] = 0;
-    yCorners[7] = -4;
+    xCorners[0] = -9;
+    yCorners[0] = -9;
+    xCorners[1] = -10;
+    yCorners[1] = 4;
+    xCorners[2] = 4;
+    yCorners[2] = 6;
+    xCorners[3] = 5;
+    yCorners[3] = 7;
+    xCorners[4] = 6;
+    yCorners[4] = 7;
+    xCorners[5] = 7;
+    yCorners[5] = -5;
+    xCorners[6] = 8;
+    yCorners[6] = -7;
+    xCorners[7] = 4;
+    yCorners[7] = -8;
     myColor = (255);
-    myCenterX = (int)(Math.random()*500);
-    myCenterY = (int)(Math.random()*500);
-    myDirectionX = (int)(Math.random()*500);
-    myDirectionY = (int)(Math.random()*500);
+    myCenterX = (int)(Math.random()*1000);
+    myCenterY = (int)(Math.random()*1000);
+    myDirectionX = Math.random()*2-1;
+    myDirectionY = Math.random()*2-1;
     myPointDirection = (int)(Math.random() * Math.PI / 180);
   }
   public void move ()
   {
-    rotateSpeed = (int)(Math.random() * 100 - 50);
-    myCenterX += myDirectionX;    
-    myCenterY += myDirectionY;     
-
-    if(myCenterX > width)
-    {     
-      myCenterX = 0;    
-    }    
-    else if (myCenterX < 0)
-    {     
-      myCenterX = width;    
-    }    
-    if(myCenterY > height)
-    {    
-      myCenterY = 0;    
-    }   
-    else if (myCenterY < 0)
-    {     
-      myCenterY = height;    
-    }   
+    rotate(rotateSpeed);
+    super.move();
   }
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
