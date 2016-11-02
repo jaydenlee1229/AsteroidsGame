@@ -6,6 +6,7 @@ public void setup()
   size(1000, 1000);
   for(int i = 0; i < space.length; i++)
   {
+    noFill();
     space[i] = new Star();
     space[i].show();
   }
@@ -128,6 +129,10 @@ class SpaceShip extends Floater
     myDirectionY = 0;
     myPointDirection = 0;
   }
+  public void show()
+  {
+    super.show();
+  }
 }
 class Asteroid extends Floater
 {
@@ -145,25 +150,27 @@ class Asteroid extends Floater
   public Asteroid()
   {
     rotateSpeed = (int)(Math.random() * 8 - 4);
-    corners = 8;
+    corners = 10;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -9;
-    yCorners[0] = -9;
-    xCorners[1] = -10;
-    yCorners[1] = 4;
-    xCorners[2] = 4;
-    yCorners[2] = 6;
-    xCorners[3] = 5;
-    yCorners[3] = 7;
-    xCorners[4] = 6;
-    yCorners[4] = 7;
+    xCorners[0] = -11;
+    yCorners[0] = 0;
+    xCorners[1] = -11;
+    yCorners[1] = -9;
+    xCorners[2] = -4;
+    yCorners[2] = -12;
+    xCorners[3] = 10;
+    yCorners[3] = 0;
+    xCorners[4] = 9;
+    yCorners[4] = 9;
     xCorners[5] = 7;
-    yCorners[5] = -5;
-    xCorners[6] = 8;
-    yCorners[6] = -7;
-    xCorners[7] = 4;
-    yCorners[7] = -8;
+    yCorners[5] = 12;
+    xCorners[6] = 2;
+    yCorners[6] = 12;
+    xCorners[7] = 1;
+    yCorners[7] = 11;
+    xCorners[8] = -4;
+    yCorners[9] = 10;
     myColor = (255);
     myCenterX = (int)(Math.random()*1000);
     myCenterY = (int)(Math.random()*1000);
