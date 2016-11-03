@@ -19,7 +19,7 @@ public void draw()
 {
   noStroke();
   fill(0, 0, 0, 50);
-  rect(0, 0, 1000, 1000);
+  rect(100, 100, 800, 800);
   for(int i = 0; i < space.length; i++)
   {
     space[i].show();
@@ -31,6 +31,13 @@ public void draw()
   }
   nova.show();
   nova.move();
+  rect(0, 0 ,100, 1000);
+  rect(900, 0, 100, 1000);
+  rect(0, 0, 1000, 100);
+  rect(0, 900, 1000, 100);
+  fill(255, 0, 0);
+  textSize(40);
+  text("Asteroids", 400, 50);
 }
 public void keyPressed()
 {
@@ -52,11 +59,11 @@ public void keyPressed()
   }
   if(keyCode == 16)
   {
-    nova.setX((int)(Math.random()*1000));
-    nova.setY((int)(Math.random()*1000));
+    nova.setX((int)(Math.random() * 800 + 100));
+    nova.setY((int)(Math.random() * 800 + 100));
     nova.setDirectionX(0);
     nova.setDirectionY(0);
-    nova.setPointDirection((int)(Math.random()*360));
+    nova.setPointDirection((int)(Math.random() * 360));
   }
 }
 class Star
@@ -68,7 +75,7 @@ class Star
   public int getY(){return myY;}
   public Star()
   {
-    myX = (int)(Math.random()*1000);
+    myX = (int)(Math.random() * 800);
     myY = (int)(Math.random()*1000);
   }
   public void show()
@@ -94,37 +101,37 @@ class SpaceShip extends Floater
     corners = 14;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = 10;
-    yCorners[0] = 8;
-    xCorners[1] = 16;
-    yCorners[1] = 2;
-    xCorners[2] = 10;
-    yCorners[2] = -8;
-    xCorners[3] = -6;
-    yCorners[3] = -8;
-    xCorners[4] = -6;
-    yCorners[4] = -16;
-    xCorners[5] = 5;
-    yCorners[5] = -19;
-    xCorners[6] = -9;
-    yCorners[6] = -19;
-    xCorners[7] = -9;
-    yCorners[7] = -16;
-    xCorners[8] = -16;
-    yCorners[8] = 2;
-    xCorners[9] = -9;
-    yCorners[9] = 16;
-    xCorners[10] = -9;
-    yCorners[10] = 19;
-    xCorners[11] = 5;
-    yCorners[11] = 19;
-    xCorners[12] = -6;
-    yCorners[12] = 16;
-    xCorners[13] = -6;
-    yCorners[13] = 8;
+    xCorners[0] = 20;
+    yCorners[0] = 16;
+    xCorners[1] = 32;
+    yCorners[1] = 0;
+    xCorners[2] = 20;
+    yCorners[2] = -16;
+    xCorners[3] = -12;
+    yCorners[3] = -16;
+    xCorners[4] = -12;
+    yCorners[4] = -32;
+    xCorners[5] = 10;
+    yCorners[5] = -38;
+    xCorners[6] = -18;
+    yCorners[6] = -38;
+    xCorners[7] = -18;
+    yCorners[7] = -32;
+    xCorners[8] = -32;
+    yCorners[8] = 0;
+    xCorners[9] = -18;
+    yCorners[9] = 32;
+    xCorners[10] = -18;
+    yCorners[10] = 38;
+    xCorners[11] = 10;
+    yCorners[11] = 38;
+    xCorners[12] = -12;
+    yCorners[12] = 32;
+    xCorners[13] = -12;
+    yCorners[13] = 16;
     myColor = (255);
-    myCenterX = 250;
-    myCenterY = 250;
+    myCenterX = 500;
+    myCenterY = 500;
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
@@ -172,8 +179,8 @@ class Asteroid extends Floater
     xCorners[8] = -4;
     yCorners[9] = 10;
     myColor = (255);
-    myCenterX = (int)(Math.random()*1000);
-    myCenterY = (int)(Math.random()*1000);
+    myCenterX = (int)(Math.random()*800);
+    myCenterY = (int)(Math.random()*800);
     myDirectionX = Math.random()*2-1;
     myDirectionY = Math.random()*2-1;
     myPointDirection = (int)(Math.random() * Math.PI / 180);
