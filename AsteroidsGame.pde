@@ -1,12 +1,11 @@
 Star [] space = new Star [100];
-Asteroid [] rocks = new Asteroid[7];
+Asteroid [] rocks = new Asteroid[10];
 SpaceShip nova = new SpaceShip();
 public void setup() 
 {
   size(1000, 1000);
   for(int i = 0; i < space.length; i++)
   {
-    noFill();
     space[i] = new Star();
     space[i].show();
   }
@@ -19,7 +18,7 @@ public void draw()
 {
   noStroke();
   fill(0, 0, 0, 50);
-  rect(100, 100, 800, 800);
+  rect(0, 0, 1000, 1000);
   for(int i = 0; i < space.length; i++)
   {
     space[i].show();
@@ -31,13 +30,6 @@ public void draw()
   }
   nova.show();
   nova.move();
-  rect(0, 0 ,100, 1000);
-  rect(900, 0, 100, 1000);
-  rect(0, 0, 1000, 100);
-  rect(0, 900, 1000, 100);
-  fill(255, 0, 0);
-  textSize(40);
-  text("Asteroids", 400, 50);
 }
 public void keyPressed()
 {
@@ -59,11 +51,11 @@ public void keyPressed()
   }
   if(keyCode == 16)
   {
-    nova.setX((int)(Math.random() * 800 + 100));
-    nova.setY((int)(Math.random() * 800 + 100));
+    nova.setX((int)(Math.random()*1000));
+    nova.setY((int)(Math.random()*1000));
     nova.setDirectionX(0);
     nova.setDirectionY(0);
-    nova.setPointDirection((int)(Math.random() * 360));
+    nova.setPointDirection((int)(Math.random()*360));
   }
 }
 class Star
@@ -75,7 +67,7 @@ class Star
   public int getY(){return myY;}
   public Star()
   {
-    myX = (int)(Math.random() * 800);
+    myX = (int)(Math.random()*1000);
     myY = (int)(Math.random()*1000);
   }
   public void show()
@@ -138,7 +130,18 @@ class SpaceShip extends Floater
   }
   public void show()
   {
-    super.show();
+    noFill();
+    stroke(myColor);         
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for(int nI = 0; nI < corners; nI++)    
+    {     
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+    }   
+    endShape(CLOSE);  
   }
 }
 class Asteroid extends Floater
@@ -157,35 +160,50 @@ class Asteroid extends Floater
   public Asteroid()
   {
     rotateSpeed = (int)(Math.random() * 8 - 4);
-    corners = 10;
+    corners = 9;
     xCorners = new int[corners];
     yCorners = new int[corners];
-    xCorners[0] = -11;
+    xCorners[0] = -22;
     yCorners[0] = 0;
-    xCorners[1] = -11;
-    yCorners[1] = -9;
-    xCorners[2] = -4;
-    yCorners[2] = -12;
-    xCorners[3] = 10;
+    xCorners[1] = -22;
+    yCorners[1] = -18;
+    xCorners[2] = -8;
+    yCorners[2] = -24;
+    xCorners[3] = 20;
     yCorners[3] = 0;
-    xCorners[4] = 9;
-    yCorners[4] = 9;
-    xCorners[5] = 7;
-    yCorners[5] = 12;
-    xCorners[6] = 2;
-    yCorners[6] = 12;
-    xCorners[7] = 1;
-    yCorners[7] = 11;
-    xCorners[8] = -4;
-    yCorners[9] = 10;
+    xCorners[4] = 18;
+    yCorners[4] = 18;
+    xCorners[5] = 14;
+    yCorners[5] = 24;
+    xCorners[6] = 4;
+    yCorners[6] = 24;
+    xCorners[7] = 2;
+    yCorners[7] = 22;
+    xCorners[8] = -8;
+    yCorners[8] = 20;
     myColor = (255);
-    myCenterX = (int)(Math.random()*800);
-    myCenterY = (int)(Math.random()*800);
+    myCenterX = (int)(Math.random()*1000);
+    myCenterY = (int)(Math.random()*1000);
     myDirectionX = Math.random()*2-1;
     myDirectionY = Math.random()*2-1;
-    myPointDirection = (int)(Math.random() * Math.PI / 180);
+    myPointDirection = (int)(Math.random()*Math.PI/180);
   }
-  public void move ()
+  public void show()
+  {
+    noFill();   
+    stroke(myColor);     
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for(int nI = 0; nI < corners; nI++)    
+    {     
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+    }   
+    endShape(CLOSE);  
+  }
+  public void move()
   {
     rotate(rotateSpeed);
     super.move();
