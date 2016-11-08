@@ -30,7 +30,7 @@ public void draw()
   }
   for(int k = 0; k < 10; k++)
   {
-    Asteroid.show();
+    //Asteroid.show();
   }
   // for(int j = 0; j < rocks.length; j++)
   // {
