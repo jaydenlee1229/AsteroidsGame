@@ -1,6 +1,5 @@
 Star [] space = new Star [100];
-ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-Asteroid [] rocks = new Asteroid[10];
+ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 SpaceShip nova = new SpaceShip();
 public void setup() 
 {
@@ -10,13 +9,9 @@ public void setup()
     space[i] = new Star();
     space[i].show();
   }
-  // for(int j = 0; j < rocks.length; j++)
-  // {
-  //   rocks[j] = new Asteroid();
-  // }
   for(int k = 0; k < 10; k++)
   {
-    asteroids.add(new Asteroid());
+    rocks.add(k, new Asteroid());
   }
 }
 public void draw() 
@@ -28,15 +23,15 @@ public void draw()
   {
     space[i].show();
   }
-  for(int k = 0; k < 10; k++)
+  for(int k = 0; k < rocks.size(); k++)
   {
-    //Asteroid.show();
+    rocks.get(k).show();
+    rocks.get(k).move();
+    if (dist(nova.getX(), nova.getY(), rocks.get(k).getX(), rocks.get(k).getY()) < 50)
+    {
+      rocks.remove(k);
+    }
   }
-  // for(int j = 0; j < rocks.length; j++)
-  // {
-  //   rocks[j].show();
-  //   rocks[j].move();
-  // }
   nova.show();
   nova.move();
 }
