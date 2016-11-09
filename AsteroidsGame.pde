@@ -1,4 +1,4 @@
-Star [] space = new Star [100];
+[] space = new Star [100];
 ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 SpaceShip nova = new SpaceShip();
 public void setup() 
@@ -27,7 +27,7 @@ public void draw()
   {
     rocks.get(k).show();
     rocks.get(k).move();
-    if (dist(nova.getX(), nova.getY(), rocks.get(k).getX(), rocks.get(k).getY()) < 50)
+    if (dist(nova.getX(), nova.getY(), rocks.get(k).getX(), rocks.get(k).getY()) < 55)
     {
       rocks.remove(k);
     }
