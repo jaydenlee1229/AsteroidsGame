@@ -1,4 +1,4 @@
-[] space = new Star [100];
+Star [] space = new Star [100];
 ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 SpaceShip nova = new SpaceShip();
 public void setup() 
