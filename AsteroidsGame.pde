@@ -42,7 +42,6 @@ public void draw()
     fire.get(l).show();
     fire.get(l).move();
   }
-  System.out.print(fire);
   nova.show();
   nova.move();
 }
@@ -71,6 +70,10 @@ public void keyPressed()
     nova.setDirectionX(0);
     nova.setDirectionY(0);
     nova.setPointDirection((int)(Math.random()*360));
+  }
+  if(keyCode == 32)
+  {
+    fire.add(new Bullet());
   }
 }
 class Star
@@ -203,48 +206,28 @@ class Asteroid extends Floater
     myDirectionY = Math.random()*2-1;
     myPointDirection = (int)(Math.random()*Math.PI/180);
   }
+  public void show()
+  {
+    noFill();
+    stroke(myColor);         
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for(int nI = 0; nI < corners; nI++)    
+    {     
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
+    }   
+    endShape(CLOSE);  
+  }
   public void move()
   {
     rotate(rotateSpeed);
     super.move();
   }
 }
-class Bullet extends Floater
-{
-  public void setX(int x){myCenterX = x;}
-  public int getX(){return (int)myCenterX;}
-  public void setY(int y){myCenterY = y;}
-  public int getY(){return (int)myCenterY;}
-  public void setDirectionX(double x){myDirectionX = x;}
-  public double getDirectionX(){return myDirectionX;}   
-  public void setDirectionY(double y){myDirectionY = y;}
-  public double getDirectionY(){return myDirectionY;}   
-  public void setPointDirection(int degrees){myPointDirection = degrees;}   
-  public double getPointDirection(){return myPointDirection;} 
-  protected double dRadians;
-  public Bullet()
-  {
-    myCenterX = 500;
-    myCenterY = 500;
-    myDirectionX = 5 * Math.cos(dRadians) + myDirectionX;
-    myDirectionY = 5 * Math.sin(dRadians) + myDirectionY;
-    myPointDirection = 0;
-    dRadians = myPointDirection*(Math.PI/180);
-  }
-  public void show()
-  {
-    noFill();   
-    stroke(myColor);     
-    double dRadians = myPointDirection*(Math.PI/180);                 
-    int xRotatedTranslated, yRotatedTranslated;    
-    ellipse((int)myCenterX, (int)myCenterY, 5, 5);
-  }
-  public void move()
-  {
-    myCenterX += myDirectionX;
-    myCenterY += myDirectionY;
-  }
-}
+
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
   protected int corners;  //the number of corners, a triangular floater has 3   
