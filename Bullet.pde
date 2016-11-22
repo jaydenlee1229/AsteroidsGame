@@ -25,8 +25,7 @@ class Bullet extends Floater
   { 
     stroke(myColor);
     noFill();
-    ellipse((int)myCenterX, (int)myCenterY, 15, 15);
-    System.out.println(myCenterX +", " +myCenterY);
+    ellipse((int)myCenterX, (int)myCenterY, 10, 10);
   }
   public void move()
   {

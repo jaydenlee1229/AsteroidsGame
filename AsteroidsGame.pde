@@ -14,10 +14,6 @@ public void setup()
   {
     rocks.add(k, new Asteroid());
   }
-  if(keyPressed && keyCode == 32)
-  {
-    fire.add(new Bullet());
-  }
 }
 public void draw() 
 {
@@ -32,10 +28,6 @@ public void draw()
   {
     rocks.get(k).show();
     rocks.get(k).move();
-    if (dist(nova.getX(), nova.getY(), rocks.get(k).getX(), rocks.get(k).getY()) < 55)
-    {
-      rocks.remove(k);
-    }
   }
   for(int l = 0; l < fire.size(); l++)
   {
@@ -49,21 +41,21 @@ public void keyPressed()
 {
   if(keyCode == 40)
   {
-    nova.accelerate(-.1);
+    nova.accelerate(-.3);
   }
   if(keyCode == 38)
   {
-    nova.accelerate(.1);
+    nova.accelerate(.3);
   }
   if(keyCode == 37)
   {
-    nova.rotate(-10);
+    nova.rotate(-15);
   }
   if(keyCode == 39)
   {
-    nova.rotate(10);
+    nova.rotate(15);
   }
-  if(keyCode == 16)
+  if(keyCode == 17)
   {
     nova.setX((int)(Math.random()*1000));
     nova.setY((int)(Math.random()*1000));
