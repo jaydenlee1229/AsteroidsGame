@@ -34,6 +34,18 @@ public void draw()
     fire.get(l).show();
     fire.get(l).move();
   }
+  for(int k = 0; k < rocks.size(); k++)
+  {
+    for(int l = 0; l < fire.size(); l++)
+    {
+      if(dist((float)fire.get(l).getX(), (float)fire.get(l).getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 20)
+      {
+        fire.remove(l);
+        rocks.remove(k);
+        break;
+      }
+    }
+  }
   nova.show();
   nova.move();
 }
