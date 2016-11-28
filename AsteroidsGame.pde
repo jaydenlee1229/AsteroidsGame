@@ -2,6 +2,7 @@ Star [] space = new Star [100];
 SpaceShip nova = new SpaceShip();
 ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 ArrayList <Bullet> fire = new ArrayList <Bullet>();
+int lives = 3;
 public void setup() 
 {
   size(1000, 1000);
@@ -44,6 +45,20 @@ public void draw()
         rocks.remove(k);
         break;
       }
+    }
+    if(dist((float)nova.getX(), (float)nova.getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 40)
+    {
+      lives--;
+      nova.setX(500);
+      nova.setY(500);
+      nova.setDirectionX(0);
+      nova.setDirectionY(0);
+      nova.setPointDirection(0);
+    }
+    if(lives < 1)
+    {
+      fill(0);
+      rect(0, 0, 1000, 1000);
     }
   }
   nova.show();
