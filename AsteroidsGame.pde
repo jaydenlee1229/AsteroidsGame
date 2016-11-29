@@ -46,23 +46,34 @@ public void draw()
         break;
       }
     }
-    if(dist((float)nova.getX(), (float)nova.getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 40)
+  }
+  for(int k = 0; k < rocks.size(); k++)
+  {
+    for(int l = 0; l < fire.size(); l++)
     {
+      if(dist((float)nova.getX(), (float)nova.getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 40)
+      {
       lives--;
       nova.setX(500);
       nova.setY(500);
       nova.setDirectionX(0);
       nova.setDirectionY(0);
       nova.setPointDirection(0);
-    }
-    if(lives < 1)
-    {
-      fill(0);
-      rect(0, 0, 1000, 1000);
+      break;
+      }
     }
   }
   nova.show();
   nova.move();
+  if(lives < 1)
+  {
+    noStroke();
+     fill(0);
+     rect(0, 0, 1000, 1000);
+     fill(255);
+     textSize(100);
+     text("YOU LOSE", 270, 500);
+  }
 }
 public void keyPressed()
 {
@@ -94,6 +105,10 @@ public void keyPressed()
   {
     fire.add(new Bullet());
   }
+}
+public void mousePressed()
+{
+  lives = 3;
 }
 class Star
 {
@@ -221,8 +236,8 @@ class Asteroid extends Floater
     myColor = (255);
     myCenterX = (int)(Math.random()*1000);
     myCenterY = (int)(Math.random()*1000);
-    myDirectionX = Math.random()*2-1;
-    myDirectionY = Math.random()*2-1;
+    myDirectionX = Math.random()*4-2;
+    myDirectionY = Math.random()*4-2;
     myPointDirection = (int)(Math.random()*Math.PI/180);
   }
   public void show()
