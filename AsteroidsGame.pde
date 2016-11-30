@@ -21,6 +21,7 @@ public void draw()
   noStroke();
   fill(0, 0, 0, 50);
   rect(0, 0, 1000, 1000);
+  fill(0);
   for(int i = 0; i < space.length; i++)
   {
     space[i].show();
@@ -49,30 +50,57 @@ public void draw()
   }
   for(int k = 0; k < rocks.size(); k++)
   {
-    for(int l = 0; l < fire.size(); l++)
+    if(dist((float)nova.getX(), (float)nova.getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 45)
     {
-      if(dist((float)nova.getX(), (float)nova.getY(), (float)rocks.get(k).getX(), (float)rocks.get(k).getY()) < 40)
-      {
-      lives--;
-      nova.setX(500);
-      nova.setY(500);
-      nova.setDirectionX(0);
-      nova.setDirectionY(0);
-      nova.setPointDirection(0);
-      break;
-      }
+    lives--;
+    nova.setX(500);
+    nova.setY(500);
+    nova.setDirectionX(0);
+    nova.setDirectionY(0);
+    nova.setPointDirection(0);
+    break;
     }
   }
   nova.show();
   nova.move();
+  textSize(25);
+  text("Lives:", 50, 53);
+  if(lives == 3)
+  {
+    ellipse(140, 45, 20, 20);
+    ellipse(170, 45, 20, 20);
+    ellipse(200, 45, 20, 20);
+  }
+  if(lives == 2)
+  {
+    ellipse(140, 45, 20, 20);
+    ellipse(170, 45, 20, 20);
+  }
+  if(lives == 1)
+  {
+    ellipse(140, 45, 20, 20);
+  }
   if(lives < 1)
   {
     noStroke();
-     fill(0);
-     rect(0, 0, 1000, 1000);
-     fill(255);
-     textSize(100);
-     text("YOU LOSE", 270, 500);
+    fill(0);
+    rect(0, 0, 1000, 1000);
+    fill(255);
+    textSize(100);
+    text("YOU LOSE", 250, 450);
+    textSize(50);
+    text("CLICK THE SCREEN TO PLAY AGAIN", 70, 600);
+  }
+  if(rocks.size() < 1)
+  {
+    noStroke();
+    fill(0);
+    rect(0, 0, 1000, 1000);
+    fill(255);
+    textSize(100);
+    text("YOU WIN", 290, 450);
+    textSize(50);
+    text("CLICK THE SCREEN TO PLAY AGAIN", 70, 600);
   }
 }
 public void keyPressed()
@@ -109,6 +137,10 @@ public void keyPressed()
 public void mousePressed()
 {
   lives = 3;
+  for(int k = 0; rocks.size() + k < 10; k++)
+  {
+    rocks.add(k, new Asteroid());
+  }
 }
 class Star
 {
