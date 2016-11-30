@@ -136,10 +136,23 @@ public void keyPressed()
 }
 public void mousePressed()
 {
-  lives = 3;
-  for(int k = 0; rocks.size() + k < 10; k++)
+  if(rocks.size() < 1)
   {
-    rocks.add(k, new Asteroid());
+    lives = 3;
+    redraw();
+    for(int k = 0; rocks.size() + k < 15; k++)
+    {
+      rocks.add(k, new Asteroid());
+    }
+  }
+  if(lives < 1)
+  {
+    lives = 3;
+    redraw();
+    for(int k = 0; rocks.size() + k < 10; k++)
+    {
+      rocks.add(k, new Asteroid());
+    }
   }
 }
 class Star
@@ -268,8 +281,8 @@ class Asteroid extends Floater
     myColor = (255);
     myCenterX = (int)(Math.random()*1000);
     myCenterY = (int)(Math.random()*1000);
-    myDirectionX = Math.random()*4-2;
-    myDirectionY = Math.random()*4-2;
+    myDirectionX = Math.random()*6-3;
+    myDirectionY = Math.random()*6-3;
     myPointDirection = (int)(Math.random()*Math.PI/180);
   }
   public void show()
