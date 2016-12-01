@@ -154,6 +154,11 @@ public void mousePressed()
       rocks.add(k, new Asteroid());
     }
   }
+  nova.setX(500);
+  nova.setY(500);
+  nova.setDirectionX(0);
+  nova.setDirectionY(0);
+  nova.setPointDirection(0);
 }
 class Star
 {
@@ -256,7 +261,7 @@ class Asteroid extends Floater
   public double getPointDirection(){return myPointDirection;} 
   public Asteroid()
   {
-    rotateSpeed = (int)(Math.random() * 8 - 4);
+    rotateSpeed = (int)(Math.random() * 10 - 5);
     corners = 9;
     xCorners = new int[corners];
     yCorners = new int[corners];
